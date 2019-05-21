@@ -1,0 +1,7 @@
+* Setting up API gateway for binary responses
+aws apigateway update-integration-response \
+ --rest-api-id ID \
+ --resource-id  ID \
+ --http-method ANY \
+ --status-code 200 \
+ --patch-operations '[{"op" : "replace", "path" : "/contentHandling", "value" : "CONVERT_TO_BINARY"}]'
