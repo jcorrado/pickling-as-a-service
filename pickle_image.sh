@@ -10,7 +10,7 @@ if [ -z "$URL" ]; then
 fi
 
 curl -s "$URL" \
-    | convert - -resize 75x75 \
+    | convert - -resize 160x160 \
 	      \( +clone +matte -fill green -colorize 100% \
 	      +clone +swap -compose overlay -composite \) \
 	      -compose SrcIn -composite - \
