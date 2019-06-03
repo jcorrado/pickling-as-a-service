@@ -4,8 +4,8 @@ require 'base64'
 require 'net/http'
 require 'uri'
 
-$max_size = 5 * 1024 * 1024
-$image_types = /image\/(jpeg|png|bmp)/
+MAX_SIZE = 5 * 1024 * 1024
+IMAGE_TYPES = /image\/(jpeg|png|bmp)/
 
 def lambda_handler(event:, context:)
   begin
@@ -46,11 +46,11 @@ def check_url(url)
     raise "failed to retrieve image"
   end
   
-  unless response.content_type.match?($image_types)
+  unless response.content_type.match?(IMAGE_TYPES)
     raise "bad file type: #{response.content_type}"
   end
 
-  if response.content_length > $max_size
+  if response.content_length > MAX_SIZE
     raise "file too large: #{response.content_length}"
   end
 end
